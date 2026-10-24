@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsSearchForm = document.getElementById('results-search-form');
   const resultsSearchInput = document.getElementById('results-search-input');
 
-  const btnLucky = document.getElementById('btn-lucky');
+  //const btnLucky = document.getElementById('btn-lucky');
   const logoBackHome = document.getElementById('logo-back-home');
   const clearSearchBtn = document.getElementById('clear-search-btn');
 
