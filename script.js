@@ -131,9 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (homeSearchForm) {
     homeSearchForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const query = homeSearchInput.value.trim() || "Hello, my name is Reya Jindal";
-      showResults(query, "all");
+      const rawQuery = homeSearchInput.value.trim() || "Hello, my name is Reya Jindal";
+      showResults(rawQuery, "all");
       
+      const query = rawQuery.toLowerCase();
       if (query.includes('extracurriculars') || query.includes('ecs')) {
         filterResults('extracurriculars');
       } else if (query.includes('skill') || query.includes('c++') || query.includes('python')) {
