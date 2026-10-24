@@ -1,0 +1,876 @@
+/* =========================================================
+   STYLE.CSS - GOOGLE SEARCH DEVELOPER RESUME / PORTFOLIO
+   Theme: Authentic Google Dark Mode Search UI
+========================================================= */
+
+/* --- 1. CSS VARIABLES (GOOGLE DARK THEME TOKENS) --- */
+:root {
+  --g-bg-main: #202124;
+  --g-bg-card: #202124;
+  --g-bg-input: #303134;
+  --g-bg-btn: #303134;
+  --g-bg-btn-hover: #3c4043;
+  --g-bg-header: #202124;
+  --g-bg-footer: #171717;
+
+  /* Google Signature Colors */
+  --g-blue: #8ab4f8;
+  --g-blue-brand: #4285f4;
+  --g-red: #ea4335;
+  --g-yellow: #fbbc04;
+  --g-green: #34a853;
+
+  /* Typography Colors */
+  --g-text-title: #e8eaed;
+  --g-text-link: #8ab4f8;
+  --g-text-visited: #c58af9;
+  --g-text-snippet: #bdc1c6;
+  --g-text-dim: #9aa0a6;
+  --g-text-domain: #dadce0;
+
+  /* Borders & Shadows */
+  --g-border: #3c4043;
+  --g-border-subtle: rgba(255, 255, 255, 0.08);
+  --g-shadow-input: 0 1px 6px rgba(0, 0, 0, 0.28);
+  --g-shadow-dropdown: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  /* Fonts */
+  --font-sans: 'Google Sans', 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+/* --- 2. GLOBAL RESET --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--g-bg-main);
+  color: var(--g-text-title);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* --- 3. VIEW TRANSITIONS (HOME vs. RESULTS) --- */
+.view-active {
+  display: flex !important;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.view-hidden {
+  display: none !important;
+}
+
+/* --- 4. VIEW 1: GOOGLE HOMEPAGE --- */
+#home-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top Header */
+.home-header {
+  height: 60px;
+  padding: 10px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-link {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.87);
+  transition: opacity 0.15s;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.87);
+  transition: background 0.15s;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: #a855f7;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Center Stage */
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px 80px;
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Iconic REYA Logo */
+.google-logo {
+  font-size: 88px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  user-select: none;
+  line-height: 1;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.logo-r { color: var(--g-blue-brand); }
+.logo-e { color: var(--g-red); }
+.logo-y { color: var(--g-yellow); }
+.logo-a { color: var(--g-green); }
+
+/* Search Form */
+.search-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-box {
+  width: 100%;
+  height: 48px;
+  background: var(--g-bg-input);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.search-box:hover,
+.search-box:focus-within {
+  background: #3c4043;
+  box-shadow: var(--g-shadow-input);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--g-text-dim);
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--g-text-title);
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.search-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-text-dim);
+  transition: color 0.15s, background 0.15s;
+}
+
+.tool-btn:hover {
+  color: var(--g-text-title);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.search-buttons {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+.g-btn {
+  background: var(--g-bg-btn);
+  border: 1px solid var(--g-bg-btn);
+  color: #e8eaed;
+  font-size: 14px;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 4px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.g-btn:hover {
+  background: var(--g-bg-btn-hover);
+  border-color: #5f6368;
+}
+
+/* Quick Explore Pills */
+.quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.quick-label {
+  font-size: 13px;
+  color: var(--g-text-dim);
+  margin-right: 4px;
+}
+
+.pill-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--g-border);
+  color: var(--g-blue);
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  transition: all 0.15s;
+}
+
+.pill-btn:hover {
+  background: rgba(138, 180, 248, 0.15);
+  border-color: var(--g-blue);
+}
+
+/* Home Footer */
+.home-footer {
+  background: var(--g-bg-footer);
+  font-size: 14px;
+  color: var(--g-text-dim);
+}
+
+.footer-row-location {
+  padding: 14px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.location-dot {
+  color: #5f6368;
+}
+
+.footer-row-links {
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.f-left, .f-right {
+  display: flex;
+  gap: 24px;
+}
+
+.f-link {
+  color: var(--g-text-dim);
+  font-size: 14px;
+}
+
+.f-link:hover {
+  text-decoration: underline;
+}
+
+/* --- 5. VIEW 2: GOOGLE SEARCH RESULTS PAGE (SERP) --- */
+#results-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-header {
+  position: sticky;
+  top: 0;
+  background: var(--g-bg-header);
+  border-bottom: 1px solid var(--g-border);
+  z-index: 100;
+  padding-top: 18px;
+}
+
+.results-top-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 24px;
+}
+
+/* Mini REYA Logo */
+.mini-logo {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Google Sans', sans-serif;
+  flex-shrink: 0;
+}
+
+.results-search-form {
+  flex: 1;
+  max-width: 692px;
+}
+
+.results-search-box {
+  width: 100%;
+  height: 44px;
+  background: var(--g-bg-input);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  box-shadow: var(--g-shadow-input);
+}
+
+.results-search-box:hover,
+.results-search-box:focus-within {
+  background: #3c4043;
+}
+
+.results-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--g-text-title);
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.results-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clear-btn {
+  color: var(--g-text-dim);
+  font-size: 14px;
+  padding: 4px;
+}
+
+.clear-btn:hover {
+  color: var(--g-text-title);
+}
+
+.vert-divider {
+  width: 1px;
+  height: 20px;
+  background: #5f6368;
+}
+
+.search-submit-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-blue);
+}
+
+.search-submit-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.results-header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Search Tabs (All, Projects, Skills, etc.) */
+.results-tabs {
+  display: flex;
+  gap: 18px;
+  padding: 12px 28px 0 144px; /* Align neatly under search input */
+  overflow-x: auto;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--g-text-dim);
+  padding: 8px 4px 10px;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.tab-item svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tab-item:hover {
+  color: var(--g-text-title);
+}
+
+.tab-item.active {
+  color: var(--g-blue);
+  border-bottom-color: var(--g-blue);
+}
+
+/* Main Results Content Layout */
+.results-container {
+  max-width: 1200px;
+  padding: 0 28px 40px 144px; /* Google's signature left margin */
+  flex: 1;
+}
+
+.search-stats {
+  font-size: 14px;
+  color: var(--g-text-dim);
+  padding: 12px 0 20px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 652px 368px;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Left Column: Organic Results */
+.results-left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.serp-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.serp-card.hidden {
+  display: none !important;
+}
+
+.serp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--g-text-dim);
+  margin-bottom: 6px;
+}
+
+.site-favicon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3c4043;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--g-blue);
+}
+
+.site-domain {
+  color: var(--g-text-domain);
+}
+
+.site-arrow {
+  color: #5f6368;
+}
+
+.serp-title {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.serp-link {
+  color: var(--g-text-link);
+}
+
+.serp-link:hover {
+  text-decoration: underline;
+}
+
+.serp-snippet {
+  font-size: 14px;
+  line-height: 1.58;
+  color: var(--g-text-snippet);
+}
+
+.serp-snippet b {
+  color: #e8eaed;
+}
+
+/* Google Sitelinks */
+.serp-sitelinks {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-left: 12px;
+  border-left: 1px solid var(--g-border);
+}
+
+.sitelink-title {
+  font-size: 14px;
+  color: var(--g-blue);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sitelink-title:hover {
+  text-decoration: underline;
+}
+
+.sitelink-desc {
+  font-size: 12.5px;
+  color: var(--g-text-dim);
+  line-height: 1.4;
+}
+
+/* Tech Badges */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.serp-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--g-border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--g-blue);
+}
+
+/* Mini Contact Form */
+.contact-mini-form {
+  margin-top: 16px;
+  background: #2a2b2f;
+  border: 1px solid var(--g-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.contact-mini-form h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--g-text-title);
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mini-input, .mini-textarea {
+  width: 100%;
+  background: var(--g-bg-main);
+  border: 1px solid var(--g-border);
+  border-radius: 4px;
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+}
+
+.mini-input:focus, .mini-textarea:focus {
+  border-color: var(--g-blue);
+}
+
+.mini-textarea {
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+.contact-toast {
+  margin-top: 8px;
+  font-size: 13px;
+  display: none;
+}
+
+.contact-toast.success {
+  display: block;
+  color: #81c995;
+}
+
+/* Right Column: Google Knowledge Graph Panel */
+.results-right {
+  position: sticky;
+  top: 140px;
+}
+
+.knowledge-panel {
+  border: 1px solid var(--g-border);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--g-bg-card);
+}
+
+.kp-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--g-border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.kp-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--g-blue-brand), var(--g-red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kp-avatar-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.kp-title {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.kp-subtitle {
+  font-size: 13.5px;
+  color: var(--g-text-dim);
+}
+
+.kp-bio {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--g-text-snippet);
+  margin-bottom: 16px;
+}
+
+.kp-details {
+  border-top: 1px solid var(--g-border);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kp-item {
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kp-label {
+  font-weight: 600;
+  color: #e8eaed;
+}
+
+.kp-value {
+  color: var(--g-text-dim);
+}
+
+.kp-profiles-header {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 18px 0 10px;
+  color: #e8eaed;
+}
+
+.kp-social-links {
+  display: flex;
+  gap: 8px;
+}
+
+.kp-social-btn {
+  flex: 1;
+  text-align: center;
+  background: var(--g-bg-input);
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--g-blue);
+  transition: background 0.15s;
+}
+
+.kp-social-btn:hover {
+  background: #3c4043;
+}
+
+/* Results Pagination Footer */
+.results-footer {
+  background: var(--g-bg-footer);
+  border-top: 1px solid var(--g-border);
+  margin-top: 60px;
+}
+
+.results-pagination {
+  padding: 40px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.g-pagination-logo {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-family: 'Google Sans', sans-serif;
+  user-select: none;
+}
+
+.pages-list {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13.5px;
+  color: var(--g-blue);
+}
+
+.page-num {
+  cursor: pointer;
+}
+
+.page-num.active {
+  color: #fff;
+  font-weight: 700;
+}
+
+.page-next {
+  cursor: pointer;
+}
+
+.results-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 28px;
+  font-size: 13px;
+  color: var(--g-text-dim);
+  text-align: center;
+}
+
+/* --- 6. RESPONSIVE DESIGN (MOBILE & TABLET) --- */
+@media (max-width: 1024px) {
+  .results-tabs {
+    padding-left: 28px;
+  }
+  .results-container {
+    padding-left: 28px;
+  }
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .results-right {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .google-logo {
+    font-size: 64px;
+  }
+  .results-top-bar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .results-container {
+    padding: 0 16px 40px;
+  }
+  .serp-sitelinks {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+}
