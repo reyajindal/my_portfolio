@@ -680,6 +680,11 @@ button {
   color: #81c995;
 }
 
+.contact-toast.error {
+  display: block;
+  color: #f28b82;
+}
+
 /* Right Column: Google Knowledge Graph Panel */
 .results-right {
   position: sticky;

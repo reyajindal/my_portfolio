@@ -248,25 +248,58 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* =========================================================
-     5. CONTACT FORM SUBMISSION FEEDBACK
+     5. CONTACT FORM SUBMISSION (FORMSPREE INTEGRATION)
   ========================================================= */
   const contactForm = document.getElementById('results-contact-form');
   const contactToast = document.getElementById('contact-toast');
 
   if (contactForm && contactToast) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('contact-name').value.trim();
       
-      contactToast.className = 'contact-toast success';
-      contactToast.textContent = `Thanks ${name || 'there'}! Message received. I will get back to you shortly.`;
-      contactToast.style.display = 'block';
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Message';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
 
-      contactForm.reset();
+      const formData = new FormData(contactForm);
+      const name = formData.get('name') || 'there';
 
-      setTimeout(() => {
-        contactToast.style.display = 'none';
-      }, 5000);
+      try {
+        const response = await fetch('https://formspree.io/f/xnppnqlz', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          contactToast.className = 'contact-toast success';
+          contactToast.textContent = `Thanks ${name}! Your message has been sent directly to my email.`;
+          contactToast.style.display = 'block';
+          contactForm.reset();
+        } else {
+          const data = await response.json();
+          contactToast.className = 'contact-toast error';
+          contactToast.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'Oops! There was a problem submitting your form.';
+          contactToast.style.display = 'block';
+        }
+      } catch (error) {
+        contactToast.className = 'contact-toast error';
+        contactToast.textContent = 'Network error. Please email me directly at jindalreya@gmail.com.';
+        contactToast.style.display = 'block';
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+        setTimeout(() => {
+          contactToast.style.display = 'none';
+        }, 6000);
+      }
     });
   }
 

@@ -511,12 +511,12 @@
             </p>
             <div class="contact-mini-form">
               <h3>Quick Message</h3>
-              <form id="results-contact-form">
+              <form id="results-contact-form" action="https://formspree.io/f/xnppnqlz" method="POST">
                 <div class="form-row">
-                  <input type="text" id="contact-name" class="mini-input" placeholder="Your Name" required />
-                  <input type="email" id="contact-email" class="mini-input" placeholder="Your Email" required />
+                  <input type="text" name="name" id="contact-name" class="mini-input" placeholder="Your Name" required />
+                  <input type="email" name="email" id="contact-email" class="mini-input" placeholder="Your Email" required />
                 </div>
-                <textarea id="contact-msg" class="mini-textarea" rows="3" placeholder="Write a message..." required></textarea>
+                <textarea name="message" id="contact-msg" class="mini-textarea" rows="3" placeholder="Write a message..." required></textarea>
                 <button type="submit" class="g-btn">Send Message</button>
                 <div id="contact-toast" class="contact-toast"></div>
               </form>
